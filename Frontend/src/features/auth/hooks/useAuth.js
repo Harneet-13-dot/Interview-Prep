@@ -41,19 +41,38 @@ export const useAuth= () => {
         setLoading(false)
     }
 
-    useEffect(() => {
-        const getAndSetUser = async () => {
-            try {
-                const data = await getMe()
-                setUser(data?.user || null)
-            } catch(err) {
-                setUser(null)
-            } finally {
-                setLoading(false)  // ✅ always runs
-            }
-        }
-        getAndSetUser()  // ✅ actually call it
-    }, [])
+    // useEffect(() => {
+    //     const getAndSetUser = async () => {
+    //         try {
+    //             const data = await getMe()
+    //             setUser(data?.user || null)
+    //         } catch(err) {
+    //             setUser(null)
+    //         } finally {
+    //             setLoading(false)  // ✅ always runs
+    //         }
+    //     }
+    //     getAndSetUser()  // ✅ actually call it
+    // }, [])
 
+    useEffect(() => {
+    const getAndSetUser = async () => {
+        try {
+            const data = await getMe()
+            setUser(data?.user || null)
+        } catch(err) {
+            setUser(null)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    // Only run getMe on initial load, not after login sets the user
+    if (!user) {
+        getAndSetUser()
+    } else {
+        setLoading(false)
+    }
+    }, [])
     return {user,loading,handleLogin,handleRegister,handleLogout}
 }
