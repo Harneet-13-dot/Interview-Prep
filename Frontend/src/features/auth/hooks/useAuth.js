@@ -10,6 +10,8 @@ export const useAuth= () => {
         setLoading(true)
         try{
             const data=await login ({email,password})
+            // set-timeout 5s
+            // then test in local
             setUser(data.user)
         }catch(err){
 
