@@ -1,0 +1,14 @@
+React
+
+UI
+=> components , pages => (nothing function just for show)
+
+Hooks
+=? connecting State and Apis
+
+State
+=> storing data for frontend , also showing loading state to user
+context.js
+
+Apis
+=>connecting backend to fronted =>services
