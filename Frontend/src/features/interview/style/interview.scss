@@ -477,7 +477,7 @@ $severity-low: #3fb950;
         border-color: rgba($severity-low, 0.25);
     }
 }
-/* ── MOBILE RESPONSIVE ───────────────────────────── */
+/* MOBILE FIX */
 @media (max-width: 768px) {
 
   .interview-layout {
@@ -486,18 +486,14 @@ $severity-low: #3fb950;
 
   .interview-nav {
     position: fixed;
-    top: 0;
     left: -100%;
+    top: 0;
     width: 80%;
     height: 100vh;
-    background: #161b22;
     z-index: 1000;
+    background: #161b22;
     transition: left 0.3s ease;
     padding: 1.5rem 1rem;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
   }
 
   .interview-nav.open {
@@ -505,7 +501,6 @@ $severity-low: #3fb950;
   }
 
   .close-btn {
-    align-self: flex-end;
     background: none;
     border: none;
     color: white;
@@ -514,24 +509,21 @@ $severity-low: #3fb950;
   }
 
   .nav-actions {
+    margin-top: auto;
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin-top: auto;
   }
 
   .primary-button {
-    width: 100%;
     background: linear-gradient(135deg, #ff2d78, #ff6b9d);
-    border: none;
-    color: white;
     padding: 1rem;
     border-radius: 1rem;
-    font-weight: 600;
+    color: white;
+    border: none;
   }
 
   .logout-button {
-    width: 100%;
     background: #e5e5e5;
     color: black;
     padding: 0.9rem;
@@ -552,7 +544,8 @@ $severity-low: #3fb950;
   }
 
   .interview-sidebar {
-    display: none;
+    width: 100%;
+    margin-top: 1rem;
   }
 
   .interview-content {
