@@ -13,6 +13,9 @@ const Home = () => {
   const resumeInputRef=useRef()
   const {handleLogout} =useAuth()
   const navigate=useNavigate()
+
+  const [fileName,setFileName]=useState("")
+
   const handleGenerateReport = async () => {
     const resumeFile = resumeInputRef.current.files[0]
 
@@ -83,14 +86,55 @@ const Home = () => {
                 <span className="badge badge--best">Best Results</span>
               </label>
 
-              <label className="dropzone">
+              {/* <label className="dropzone">
                 <p className="dropzone__title">
                   Click to upload or drag & drop
                 </p>
                 <p className="dropzone__subtitle">
                   PDF or DOCX (Max 5MB)
                 </p>
-                <input ref={resumeInputRef}hidden type="file" accept=".pdf,.docx" />
+                <input 
+                  ref={resumeInputRef}
+                  hidden 
+                  type="file" 
+                  accept=".pdf,.docx"
+                  onChange={(e) => {
+                    const file = e.target.files[0]
+                    if (file) {
+                      setFileName(file.name)
+                    }
+                  }}
+                />
+              </label> */}
+              <label className="dropzone">
+                <input 
+                  ref={resumeInputRef}
+                  hidden 
+                  type="file" 
+                  accept=".pdf,.docx"
+                  onChange={(e) => {
+                    const file = e.target.files[0]
+                    if (file) {
+                      setFileName(file.name)
+                    }
+                  }}
+                />
+
+                {fileName ? (
+                  <>
+                    <p className="dropzone__title">{fileName}</p>
+                    <p className="dropzone__subtitle">File uploaded successfully ✅</p>
+                  </>
+                ) : (
+                  <>
+                    <p className="dropzone__title">
+                      Click to upload or drag & drop
+                    </p>
+                    <p className="dropzone__subtitle">
+                      PDF or DOCX (Max 5MB)
+                    </p>
+                  </>
+                )}
               </label>
             </div>
 
