@@ -175,8 +175,8 @@ const Home = () => {
           <span className="footer-info">
             AI-Powered Strategy Generation • Approx 30s
           </span>
-
           <button 
+            disabled={!jobDescription || !fileName}
             onClick={handleGenerateReport}
             className="generate-btn">
             Generate My Interview Strategy

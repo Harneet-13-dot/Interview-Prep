@@ -343,6 +343,11 @@ $font-stack:     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Robot
     &:active {
         transform: scale(0.98);
     }
+
+    &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    }
 }
 
 .recent-reports{
@@ -395,4 +400,88 @@ $font-stack:     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Robot
             color: $text-primary;
         }
     }
+}
+
+// ── MOBILE RESPONSIVE ─────────────────────────────────────
+@media (max-width: 768px) {
+
+  .home-page {
+    padding: 1.5rem 1rem;
+  }
+
+  .page-header {
+    h1 {
+      font-size: 1.6rem;
+      line-height: 1.3;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+  }
+
+  .logout-btn {
+    top: 5px;
+    right: 10px;
+    font-size: 0.7rem;
+  }
+
+  // STACK PANELS
+  .interview-card__body {
+    flex-direction: column;
+  }
+
+  .panel-divider {
+    display: none;
+  }
+
+  .panel {
+    padding: 1rem;
+  }
+
+  // TEXTAREA HEIGHT FIX
+  .panel__textarea {
+    min-height: 160px;
+  }
+
+  // DROPZONE
+  .dropzone {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  // FOOTER BUTTON STACK
+  .interview-card__footer {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+
+    .footer-info {
+      text-align: center;
+      font-size: 0.7rem;
+    }
+  }
+
+  .generate-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  // RECENT REPORTS GRID FIX
+  .recent-reports {
+    .reports-list {
+      flex-direction: column;
+
+      .report-item {
+        width: 100%;
+      }
+    }
+  }
+
+  // FOOTER LINKS
+  .page-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
 }
