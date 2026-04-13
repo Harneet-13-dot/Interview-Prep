@@ -6,19 +6,18 @@ export const useAuth= () => {
     const context = useContext(AuthContext) 
     const {user,setUser,loading,setLoading} =context
 
-    const handleLogin = async ({email,password}) => {
-        setLoading(true)
-        try{
-            const data=await login ({email,password})
-            // set-timeout 5s
-            // then test in local
-            setUser(data.user)
-        }catch(err){
-
-        }finally{
-            setLoading(false)
-        }
+    const handleLogin = async ({ email, password }) => {
+    setLoading(true)
+    try {
+        const data = await login({ email, password })
+        // ✅ data.user already has id, username, email — just set it directly
+        setUser(data.user)
+    } catch(err) {
+        console.error("Login error:", err)
+    } finally {
+        setLoading(false)
     }
+}
 
     const handleRegister = async ({username,email,password}) => {
         setLoading(true)
@@ -55,24 +54,38 @@ export const useAuth= () => {
     //     getAndSetUser()  // ✅ actually call it
     // }, [])
 
+    // Only run getMe on initial load, not after login sets the user
     useEffect(() => {
-    const getAndSetUser = async () => {
+        const getAndSetUser = async () => {
         try {
             const data = await getMe()
             setUser(data?.user || null)
-        } catch(err) {
-            setUser(null)
+        } catch (err) {
+            setUser(null) // ✅ just set null, don't crash
         } finally {
             setLoading(false)
         }
     }
+    getAndSetUser()
+}, [])
+    // useEffect(() => {
+    // const getAndSetUser = async () => {
+    //     try {
+    //         const data = await getMe()
+    //         setUser(data?.user || null)
+    //     } catch(err) {
+    //         setUser(null)
+    //     } finally {
+    //         setLoading(false)
+    //     }
+    // }
 
-    // Only run getMe on initial load, not after login sets the user
-    if (!user) {
-        getAndSetUser()
-    } else {
-        setLoading(false)
-    }
-    }, [])
+    // // Only run getMe on initial load, not after login sets the user
+    // if (!user) {
+    //     getAndSetUser()
+    // } else {
+    //     setLoading(false)
+    // }
+    // }, [])
     return {user,loading,handleLogin,handleRegister,handleLogout}
 }

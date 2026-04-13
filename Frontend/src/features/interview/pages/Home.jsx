@@ -2,33 +2,47 @@ import React,{useState,useRef} from "react";
 import "../style/home.scss";
 import {useInterview} from "../hooks/useInterview.js"
 import { useNavigate } from "react-router";
+import {useAuth} from "../../auth/hooks/useAuth.js"
+
+
 const Home = () => {
 
   const {loading,generateReport,reports} = useInterview()  
   const [jobDescription, setJobDescription ] = useState("")
   const [selfDescription, setSelfDescription] = useState("");
   const resumeInputRef=useRef()
-
+  const {handleLogout} =useAuth()
   const navigate=useNavigate()
-  const handleGenerateReport= async () => {
-    const resumeFile=resumeInputRef.current.files[ 0 ]
-    const data=await generateReport({jobDescription,selfDescription,resumeFile})
-    navigate(`/interview/${data._id}`) 
-  }
+  const handleGenerateReport = async () => {
+    const resumeFile = resumeInputRef.current.files[0]
+
+    const data = await generateReport({ jobDescription, selfDescription, resumeFile })
+
+    // ✅ Guard against null/undefined — if API failed, data will be undefined
+    if (data?._id) {
+        navigate(`/interview/${data._id}`)
+    } else {
+        console.error("Report generation failed, no data returned")
+    }
+}
 
   return (
     <div className="home-page">
 
       {/* Header */}
       <header className="page-header">
-        <h1>
-          Create Your Custom <span className="highlight">Interview Plan</span>
-        </h1>
-        <p>
-          Let our AI analyze the job requirements and your unique profile to
-          build a winning strategy.
-        </p>
-      </header>
+      <h1>
+        Create Your Custom <span className="highlight">Interview Plan</span>
+      </h1>
+      <p>
+        Let our AI analyze the job requirements and your unique profile to build a winning strategy.
+      </p>
+
+      {/* ✅ ADD HERE */}
+      <button className="logout-btn" onClick={handleLogout}>
+        Logout
+      </button>
+    </header>
 
       {/* Card */}
       <div className="interview-card">

@@ -32,27 +32,52 @@ $font-stack:     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Robot
 
 // ── Page Header ──────────────────────────────────────────────────────────────
 .page-header {
-    text-align: center;
-
-    h1 {
-        font-size: 2.25rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        color: $text-primary;
-    }
-
-    p {
-        color: $text-muted;
-        font-size: 0.95rem;
-        max-width: 480px;
-        margin: 0 auto;
-        line-height: 1.6;
-    }
-
-    .highlight {
-        color: $accent;
-    }
+  position: relative;
+  width: 100%;
+  text-align: center;
+  padding-top: 1.5rem;   // 👈 ADD THIS (important)
 }
+
+.logout-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;   // 👈 give some breathing space
+
+  background: transparent;
+  border: 1px solid #2a3348;
+  color: #7d8590;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+
+  &:hover {
+    color: #ff2d78;
+    border-color: #ff2d78;
+  }
+}
+// .page-header {
+//     text-align: center;
+
+//     h1 {
+//         font-size: 2.25rem;
+//         font-weight: 700;
+//         margin-bottom: 0.5rem;
+//         color: $text-primary;
+//     }
+
+//     p {
+//         color: $text-muted;
+//         font-size: 0.95rem;
+//         max-width: 480px;
+//         margin: 0 auto;
+//         line-height: 1.6;
+//     }
+
+//     .highlight {
+//         color: $accent;
+//     }
+// }
 
 // ── Main Card ─────────────────────────────────────────────────────────────────
 .interview-card {
